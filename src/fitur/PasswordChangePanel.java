@@ -8,9 +8,11 @@ package fitur;
  *
  * @author Asus
  */
-
-import javax.swing.ImageIcon;
-import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 public class PasswordChangePanel extends javax.swing.JFrame {
     
@@ -21,6 +23,7 @@ public class PasswordChangePanel extends javax.swing.JFrame {
      */
     public PasswordChangePanel() {
         initComponents();
+        this.setLocationRelativeTo(null); // Tengah layar
     }
 
     /**
@@ -86,12 +89,12 @@ public class PasswordChangePanel extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usenameLB1)
                     .addComponent(usenameLB))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(374, 374, 374)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -123,7 +126,24 @@ public class PasswordChangePanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
+         // 1. Tampilkan dialog konfirmasi (Alert)
+        int respons = JOptionPane.showConfirmDialog(
+            this, // 'this' merujuk ke frame ini (misal: ResetPasswordPanel)
+            "Apakah Anda yakin ingin kembali ke halaman Login?", // Pesan
+            "Konfirmasi Kembali", // Judul dialog
+            JOptionPane.YES_NO_OPTION, // Tombol Ya dan Tidak
+            JOptionPane.QUESTION_MESSAGE // Ikon tanda tanya
+        );
+        
+        // 2. Cek apakah pengguna mengklik "Ya"
+        if (respons == JOptionPane.YES_OPTION) {
+            // 3. Jika Ya, buka LoginPanel
+            LoginPanel loginFrame = new LoginPanel();
+            loginFrame.setVisible(true);
+            
+            // 4. Tutup jendela ini
+            this.dispose();
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     /**

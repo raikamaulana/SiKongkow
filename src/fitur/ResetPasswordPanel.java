@@ -48,7 +48,7 @@ public class ResetPasswordPanel extends javax.swing.JFrame {
     // Constructor diubah untuk menerima 'int' (angka ID)
     public ResetPasswordPanel(int userId) {
         initComponents(); // Panggil ini jika Anda pakai NetBeans Designer
-        
+        this.setLocationRelativeTo(null); // Tengah layar
         // Simpan ID-nya
         this.userIdToReset = userId;
         
